@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keycode and ASCII Value Display</title>
+</head>
+<style>
+    #output{
+        color:green;
+    }
+</style>
+<body>
+  <h1 id="output">Press any key</h1>
+  <p id="ascii">ASCII value: </p>
+
+  <script>
+    const outputElement = document.getElementById("output");
+    const asciiElement = document.getElementById("ascii");
+    let isFirstKeyPress = true;
+
+    document.addEventListener("keydown", (event) => {
+      const pressedKey = event.key;
+      const keyCode = event.keyCode || event.which;
+
+      if (isFirstKeyPress) {
+        outputElement.textContent = `You pressed ${pressedKey}`;
+        isFirstKeyPress = false;
+      }
+
+      if (pressedKey === "Enter") {
+        asciiElement.textContent = `ASCII value: ${keyCode} (Enter key)`;
+      } else if (pressedKey === "Backspace") {
+        asciiElement.textContent = `ASCII value: ${keyCode} (Backspace key)`;
+      } else {
+        asciiElement.textContent = `ASCII value: ${keyCode} (${pressedKey})`;
+      }
+    });
+  </script>
+</body>
+</html>
